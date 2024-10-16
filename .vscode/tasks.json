@@ -1,0 +1,43 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "编译器: D:\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gcc.exe",
+            "problemMatcher": []
+        },
+        {
+            "label": "linkMCU",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "stlink.cfg",
+                "-f",
+                "stm32g4x.cfg",
+            ],
+            "group": "build"
+        },
+        {
+            "label": "download",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "stlink.cfg",
+                "-f",
+                "stm32g4x.cfg",
+                "-c",
+                "program Output/stm32g4.elf verify reset exit"
+            ],
+            "group": "build"
+        }
+    ]
+}
